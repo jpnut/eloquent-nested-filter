@@ -2,10 +2,10 @@
 
 namespace JPNut\EloquentNestedFilter;
 
-use phpDocumentor\Reflection\DocBlock\Tags\Var_;
-use phpDocumentor\Reflection\DocBlockFactory;
-use ReflectionProperty;
 use ReflectionClass;
+use ReflectionProperty;
+use phpDocumentor\Reflection\DocBlockFactory;
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 
 class TypeResolver
 {
@@ -37,7 +37,7 @@ class TypeResolver
          */
         if ($property->getDocComment() === false
             || empty($varTags = static::docBlockReader()->create($property->getDocComment())->getTagsByName('var'))
-            || !(($tag = $varTags[0]) instanceof Var_)) {
+            || ! (($tag = $varTags[0]) instanceof Var_)) {
             return new static(
                 is_null($type = $property->getType())
                     ? ''
@@ -72,8 +72,8 @@ class TypeResolver
     {
         return $this->normaliseTypes(...array_map(
             function (string $type) {
-                if (!$type) {
-                    return null;
+                if (! $type) {
+                    return;
                 }
 
                 if (strpos($type, '[]') !== false) {
@@ -83,8 +83,6 @@ class TypeResolver
                 if (strpos($type, 'iterable<') !== false) {
                     return str_replace(['iterable<', '>'], ['', ''], $type);
                 }
-
-                return null;
             },
             explode('|', $definition)
         ));
@@ -111,7 +109,7 @@ class TypeResolver
                  * @param  string|null $type
                  * @return string|null
                  */
-                fn(?string $type) => $this->normaliseType($type),
+                fn (?string $type) => $this->normaliseType($type),
                 $types
             )
         );

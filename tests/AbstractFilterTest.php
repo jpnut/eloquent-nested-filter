@@ -2,8 +2,8 @@
 
 namespace JPNut\EloquentNestedFilter\Tests;
 
-use JPNut\EloquentNestedFilter\Tests\Filters\ProductFilter;
 use JPNut\EloquentNestedFilter\Tests\Models\Product;
+use JPNut\EloquentNestedFilter\Tests\Filters\ProductFilter;
 
 class AbstractFilterTest extends TestCase
 {
@@ -16,42 +16,42 @@ class AbstractFilterTest extends TestCase
                     'id' => [
                         'value' => 1,
                         'operator' => 'IS',
-                    ]
+                    ],
                 ],
                 [
                     'name' => [
                         'value' => 'foo',
-                        'operator' => 'CONTAINS'
-                    ]
+                        'operator' => 'CONTAINS',
+                    ],
                 ],
                 [
                     'or' => [
                         [
                             'amount' => [
                                 'value' => 10,
-                                'operator' => 'GREATER_THAN_OR_EQUAL_TO'
-                            ]
+                                'operator' => 'GREATER_THAN_OR_EQUAL_TO',
+                            ],
                         ],
                         [
                             'amount' => [
-                                'operator' => 'NULL'
-                            ]
+                                'operator' => 'NULL',
+                            ],
                         ],
                         [
                             'in_stock' => [
                                 'value' => true,
-                                'operator' => 'IS'
-                            ]
+                                'operator' => 'IS',
+                            ],
                         ],
                         [
                             'created_at' => [
                                 'value' => '2020-01-01',
-                                'operator' => 'LESS_THAN'
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+                                'operator' => 'LESS_THAN',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ]);
 
         $query = $filter->filter(Product::query());

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace JPNut\EloquentNestedFilter;
 
-use Illuminate\Database\Eloquent\Builder;
 use InvalidArgumentException;
+use Illuminate\Database\Eloquent\Builder;
 use JPNut\EloquentNestedFilter\Contracts\Filterable;
 
 abstract class AbstractFilterObject implements Filterable
@@ -21,7 +21,7 @@ abstract class AbstractFilterObject implements Filterable
 
     public static function missingOperator(): InvalidArgumentException
     {
-        return new InvalidArgumentException("No operator provided.");
+        return new InvalidArgumentException('No operator provided.');
     }
 
     protected static function operatorFromProperties(array $properties = []): Operator

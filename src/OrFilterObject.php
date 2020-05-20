@@ -21,13 +21,13 @@ class OrFilterObject implements Filterable
 
     public function filter(string $name, Builder $query): Builder
     {
-        return $query->where(fn(Builder $sub_query) => $this->combineFilters($sub_query));
+        return $query->where(fn (Builder $sub_query) => $this->combineFilters($sub_query));
     }
 
     private function combineFilters(Builder $query): Builder
     {
         foreach ($this->data as $filter) {
-            $query->orWhere(fn(Builder $sub_query) => $filter->filter($sub_query));
+            $query->orWhere(fn (Builder $sub_query) => $filter->filter($sub_query));
         }
 
         return $query;
