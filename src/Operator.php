@@ -28,20 +28,20 @@ use MyCLabs\Enum\Enum;
  */
 class Operator extends Enum
 {
-    private const IS                       = 'IS';
-    private const IS_NOT                   = 'IS_NOT';
-    private const LIKE                     = 'LIKE';
-    private const NOT_LIKE                 = 'NOT_LIKE';
-    private const CONTAINS                 = 'CONTAINS';
-    private const DOES_NOT_CONTAIN         = 'DOES_NOT_CONTAIN';
-    private const BEGINS                   = 'BEGINS';
-    private const DOES_NOT_BEGIN           = 'DOES_NOT_BEGIN';
-    private const ENDS                     = 'ENDS';
-    private const DOES_NOT_END             = 'DOES_NOT_END';
-    private const LESS_THAN                = 'LESS_THAN';
-    private const LESS_THAN_OR_EQUAL_TO    = 'LESS_THAN_OR_EQUAL_TO';
-    private const GREATER_THAN             = 'GREATER_THAN';
+    private const IS = 'IS';
+    private const IS_NOT = 'IS_NOT';
+    private const LIKE = 'LIKE';
+    private const NOT_LIKE = 'NOT_LIKE';
+    private const CONTAINS = 'CONTAINS';
+    private const DOES_NOT_CONTAIN = 'DOES_NOT_CONTAIN';
+    private const BEGINS = 'BEGINS';
+    private const DOES_NOT_BEGIN = 'DOES_NOT_BEGIN';
+    private const ENDS = 'ENDS';
+    private const DOES_NOT_END = 'DOES_NOT_END';
+    private const LESS_THAN = 'LESS_THAN';
+    private const LESS_THAN_OR_EQUAL_TO = 'LESS_THAN_OR_EQUAL_TO';
+    private const GREATER_THAN = 'GREATER_THAN';
     private const GREATER_THAN_OR_EQUAL_TO = 'GREATER_THAN_OR_EQUAL_TO';
-    private const NULL                     = 'NULL';
-    private const NOT_NULL                 = 'NOT_NULL';
+    private const NULL = 'NULL';
+    private const NOT_NULL = 'NOT_NULL';
 }

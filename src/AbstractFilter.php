@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace JPNut\EloquentNestedFilter;
 
-use Illuminate\Database\Eloquent\Builder;
-use InvalidArgumentException;
-use JPNut\EloquentNestedFilter\Contracts\Filterable;
-use JPNut\EloquentNestedFilter\Contracts\ResourceFilter;
 use ReflectionClass;
 use ReflectionProperty;
+use InvalidArgumentException;
+use Illuminate\Database\Eloquent\Builder;
+use JPNut\EloquentNestedFilter\Contracts\Filterable;
+use JPNut\EloquentNestedFilter\Contracts\ResourceFilter;
 
 class AbstractFilter
 {
@@ -87,8 +87,8 @@ class AbstractFilter
 
         return array_filter(
             $class->getProperties(ReflectionProperty::IS_PUBLIC),
-            fn(ReflectionProperty $reflectionProperty) => !$reflectionProperty->isStatic()
-                && !is_null($reflectionProperty->getType())
+            fn (ReflectionProperty $reflectionProperty) => ! $reflectionProperty->isStatic()
+                && ! is_null($reflectionProperty->getType())
                 && $this->isFilterableProperty($reflectionProperty)
         );
     }
@@ -128,7 +128,7 @@ class AbstractFilter
                  * @param  mixed $props
                  * @return mixed
                  */
-                fn($props) => $this->resolveFilterClass(
+                fn ($props) => $this->resolveFilterClass(
                     $type,
                     $props,
                     $property->getName(),
@@ -144,7 +144,7 @@ class AbstractFilter
     {
         $resolver = TypeResolver::fromProperty($property, $this->reflectionClass());
 
-        $allowedTypes = array_filter($resolver->allowedTypes, fn(string $type) => $type !== 'null');
+        $allowedTypes = array_filter($resolver->allowedTypes, fn (string $type) => $type !== 'null');
 
         if (count($allowedTypes) !== 1) {
             return 'mixed';
@@ -157,7 +157,7 @@ class AbstractFilter
 
     private function propertyIsArrayType(ReflectionProperty $property): bool
     {
-        if (!is_null($type = $property->getType()) && $type->getName() === 'array') {
+        if (! is_null($type = $property->getType()) && $type->getName() === 'array') {
             return true;
         }
 
@@ -173,27 +173,27 @@ class AbstractFilter
     private function resolveFilterClass(string $class, $value, string $name)
     {
         /**
-         * If the passed value is already an instance of the class, return that instance
+         * If the passed value is already an instance of the class, return that instance.
          */
         if ($value instanceof $class) {
             return $value;
         }
 
-        if (!is_array($value)) {
+        if (! is_array($value)) {
             throw new InvalidArgumentException(
                 "Expected value of {$name} to be instance of {$class} or array."
             );
         }
 
         /**
-         * If the class is an implementation of ResourceFilter, create a new instance using the passed value
+         * If the class is an implementation of ResourceFilter, create a new instance using the passed value.
          */
         if ($this->classImplements($class, ResourceFilter::class)) {
             return new $class($value);
         }
 
         /**
-         * If the class is a subclass of AbstractFilterObject, create a new instance from the passed value
+         * If the class is a subclass of AbstractFilterObject, create a new instance from the passed value.
          */
         if (is_subclass_of($class, AbstractFilterObject::class)) {
             return $class::fromArray($value);
