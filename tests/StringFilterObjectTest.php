@@ -2,8 +2,8 @@
 
 namespace JPNut\EloquentNestedFilter\Tests;
 
-use JPNut\EloquentNestedFilter\StringFilterObject;
 use JPNut\EloquentNestedFilter\Operator;
+use JPNut\EloquentNestedFilter\StringFilterObject;
 use JPNut\EloquentNestedFilter\Tests\Models\Product;
 
 class StringFilterObjectTest extends TestCase
@@ -179,7 +179,7 @@ class StringFilterObjectTest extends TestCase
     /** @test */
     public function it_throws_for_invalid_operator()
     {
-        $this->expectExceptionMessage("Invalid Operator: LESS_THAN.");
+        $this->expectExceptionMessage('Invalid Operator: LESS_THAN.');
 
         $filter = new StringFilterObject(null, Operator::LESS_THAN());
 

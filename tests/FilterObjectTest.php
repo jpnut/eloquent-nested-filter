@@ -2,8 +2,8 @@
 
 namespace JPNut\EloquentNestedFilter\Tests;
 
-use JPNut\EloquentNestedFilter\IDFilterObject;
 use JPNut\EloquentNestedFilter\Operator;
+use JPNut\EloquentNestedFilter\IDFilterObject;
 use JPNut\EloquentNestedFilter\Tests\Models\Product;
 
 class FilterObjectTest extends TestCase
@@ -37,7 +37,7 @@ class FilterObjectTest extends TestCase
     {
         $object = new IDFilterObject(1, Operator::BEGINS());
 
-        $this->expectExceptionMessage("Invalid Operator: BEGINS.");
+        $this->expectExceptionMessage('Invalid Operator: BEGINS.');
 
         $object->filter('id', Product::query());
     }
@@ -45,7 +45,7 @@ class FilterObjectTest extends TestCase
     /** @test */
     public function it_throws_if_no_operator_is_provided()
     {
-        $this->expectExceptionMessage("No operator provided.");
+        $this->expectExceptionMessage('No operator provided.');
 
         IDFilterObject::fromArray(['value' => 1]);
     }

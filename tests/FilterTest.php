@@ -3,15 +3,15 @@
 namespace JPNut\EloquentNestedFilter\Tests;
 
 use Carbon\Carbon;
-use JPNut\EloquentNestedFilter\BooleanFilterObject;
-use JPNut\EloquentNestedFilter\DateFilterObject;
-use JPNut\EloquentNestedFilter\IDFilterObject;
-use JPNut\EloquentNestedFilter\NumberFilterObject;
 use JPNut\EloquentNestedFilter\Operator;
+use JPNut\EloquentNestedFilter\IDFilterObject;
+use JPNut\EloquentNestedFilter\DateFilterObject;
+use JPNut\EloquentNestedFilter\NumberFilterObject;
 use JPNut\EloquentNestedFilter\StringFilterObject;
-use JPNut\EloquentNestedFilter\Tests\Filters\CategoryFilter;
+use JPNut\EloquentNestedFilter\BooleanFilterObject;
 use JPNut\EloquentNestedFilter\Tests\Models\Product;
 use JPNut\EloquentNestedFilter\Tests\Filters\ProductFilter;
+use JPNut\EloquentNestedFilter\Tests\Filters\CategoryFilter;
 use JPNut\EloquentNestedFilter\Tests\Objects\InvalidFilterObject;
 
 class FilterTest extends TestCase
@@ -65,11 +65,11 @@ class FilterTest extends TestCase
                         [
                             'name' => [
                                 'value' => 'bar',
-                                'operator' => 'BEGINS'
-                            ]
-                        ]
-                    ]
-                ]
+                                'operator' => 'BEGINS',
+                            ],
+                        ],
+                    ],
+                ],
             ],
         ]);
 
@@ -117,9 +117,9 @@ class FilterTest extends TestCase
                     'category' => [
                         new CategoryFilter([
                             'name' => new StringFilterObject('bar', Operator::BEGINS()),
-                        ])
-                    ]
-                ])
+                        ]),
+                    ],
+                ]),
             ],
         ]);
 
@@ -157,7 +157,7 @@ class FilterTest extends TestCase
         $this->expectExceptionMessage("Expected value of 'id' to be instance of '".IDFilterObject::class."' or array.");
 
         new ProductFilter([
-            'id' => true
+            'id' => true,
         ]);
     }
 
