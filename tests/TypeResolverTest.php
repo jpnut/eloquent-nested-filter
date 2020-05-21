@@ -2,15 +2,15 @@
 
 namespace JPNut\EloquentNestedFilter\Tests;
 
-use JPNut\EloquentNestedFilter\BooleanFilterObject;
-use JPNut\EloquentNestedFilter\DateFilterObject;
+use JPNut\EloquentNestedFilter\TypeResolver;
 use JPNut\EloquentNestedFilter\IDFilterObject;
+use JPNut\EloquentNestedFilter\DateFilterObject;
 use JPNut\EloquentNestedFilter\NumberFilterObject;
 use JPNut\EloquentNestedFilter\StringFilterObject;
-use JPNut\EloquentNestedFilter\Tests\Filters\CategoryFilter;
+use JPNut\EloquentNestedFilter\BooleanFilterObject;
 use JPNut\EloquentNestedFilter\Tests\Filters\ProductFilter;
+use JPNut\EloquentNestedFilter\Tests\Filters\CategoryFilter;
 use JPNut\EloquentNestedFilter\Tests\Objects\InvalidFilterObject;
-use JPNut\EloquentNestedFilter\TypeResolver;
 
 class TypeResolverTest extends TestCase
 {

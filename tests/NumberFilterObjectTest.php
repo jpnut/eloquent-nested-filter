@@ -2,8 +2,8 @@
 
 namespace JPNut\EloquentNestedFilter\Tests;
 
-use JPNut\EloquentNestedFilter\NumberFilterObject;
 use JPNut\EloquentNestedFilter\Operator;
+use JPNut\EloquentNestedFilter\NumberFilterObject;
 use JPNut\EloquentNestedFilter\Tests\Models\Product;
 
 class NumberFilterObjectTest extends TestCase
@@ -123,7 +123,7 @@ class NumberFilterObjectTest extends TestCase
     /** @test */
     public function it_throws_for_invalid_operator()
     {
-        $this->expectExceptionMessage("Invalid Operator: BEGINS.");
+        $this->expectExceptionMessage('Invalid Operator: BEGINS.');
 
         $filter = new NumberFilterObject(null, Operator::BEGINS());
 
