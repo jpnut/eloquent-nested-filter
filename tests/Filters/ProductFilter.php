@@ -23,7 +23,7 @@ class ProductFilter extends AbstractFilter
     public ?DateFilterObject $created_at = null;
 
     /** @var \JPNut\EloquentNestedFilter\Tests\Filters\CategoryFilter[]|null */
-    public ?array $category;
+    public ?array $category = null;
 
     public ?InvalidFilterObject $invalid_property;
 
