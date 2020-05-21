@@ -3,8 +3,8 @@
 namespace JPNut\EloquentNestedFilter\Tests\Filters;
 
 use JPNut\EloquentNestedFilter\AbstractFilter;
-use JPNut\EloquentNestedFilter\DateFilterObject;
 use JPNut\EloquentNestedFilter\IDFilterObject;
+use JPNut\EloquentNestedFilter\DateFilterObject;
 use JPNut\EloquentNestedFilter\StringFilterObject;
 
 class CategoryFilter extends AbstractFilter

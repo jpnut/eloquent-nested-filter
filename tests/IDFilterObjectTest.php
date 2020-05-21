@@ -2,8 +2,8 @@
 
 namespace JPNut\EloquentNestedFilter\Tests;
 
-use JPNut\EloquentNestedFilter\IDFilterObject;
 use JPNut\EloquentNestedFilter\Operator;
+use JPNut\EloquentNestedFilter\IDFilterObject;
 use JPNut\EloquentNestedFilter\Tests\Models\Product;
 
 class IDFilterObjectTest extends TestCase
@@ -21,6 +21,7 @@ class IDFilterObjectTest extends TestCase
             $query
         );
     }
+
     /** @test */
     public function it_creates_correct_query_for_is_not_operator()
     {
@@ -38,7 +39,7 @@ class IDFilterObjectTest extends TestCase
     /** @test */
     public function it_throws_for_invalid_operator()
     {
-        $this->expectExceptionMessage("Invalid Operator: BEGINS.");
+        $this->expectExceptionMessage('Invalid Operator: BEGINS.');
 
         $filter = new IDFilterObject(1, Operator::BEGINS());
 

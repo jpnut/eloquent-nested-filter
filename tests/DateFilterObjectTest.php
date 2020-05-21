@@ -3,8 +3,8 @@
 namespace JPNut\EloquentNestedFilter\Tests;
 
 use Carbon\Carbon;
-use JPNut\EloquentNestedFilter\DateFilterObject;
 use JPNut\EloquentNestedFilter\Operator;
+use JPNut\EloquentNestedFilter\DateFilterObject;
 use JPNut\EloquentNestedFilter\Tests\Models\Product;
 
 class DateFilterObjectTest extends TestCase
@@ -124,7 +124,7 @@ class DateFilterObjectTest extends TestCase
     /** @test */
     public function it_throws_for_invalid_operator()
     {
-        $this->expectExceptionMessage("Invalid Operator: BEGINS.");
+        $this->expectExceptionMessage('Invalid Operator: BEGINS.');
 
         $filter = new DateFilterObject(null, Operator::BEGINS());
 

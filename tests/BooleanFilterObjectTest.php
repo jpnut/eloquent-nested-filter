@@ -2,8 +2,8 @@
 
 namespace JPNut\EloquentNestedFilter\Tests;
 
-use JPNut\EloquentNestedFilter\BooleanFilterObject;
 use JPNut\EloquentNestedFilter\Operator;
+use JPNut\EloquentNestedFilter\BooleanFilterObject;
 use JPNut\EloquentNestedFilter\Tests\Models\Product;
 
 class BooleanFilterObjectTest extends TestCase
@@ -67,7 +67,7 @@ class BooleanFilterObjectTest extends TestCase
     /** @test */
     public function it_throws_for_invalid_operator()
     {
-        $this->expectExceptionMessage("Invalid Operator: BEGINS.");
+        $this->expectExceptionMessage('Invalid Operator: BEGINS.');
 
         $filter = new BooleanFilterObject(true, Operator::BEGINS());
 
