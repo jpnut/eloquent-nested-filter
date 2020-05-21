@@ -8,17 +8,30 @@ use JPNut\EloquentNestedFilter\DateFilterObject;
 use JPNut\EloquentNestedFilter\NumberFilterObject;
 use JPNut\EloquentNestedFilter\StringFilterObject;
 use JPNut\EloquentNestedFilter\BooleanFilterObject;
-use JPNut\EloquentNestedFilter\Contracts\ResourceFilter;
+use JPNut\EloquentNestedFilter\Tests\Objects\InvalidFilterObject;
 
-class ProductFilter extends AbstractFilter implements ResourceFilter
+class ProductFilter extends AbstractFilter
 {
-    public ?IDFilterObject $id;
+    public ?IDFilterObject $id = null;
 
-    public ?StringFilterObject $name;
+    public ?StringFilterObject $name = null;
 
-    public ?NumberFilterObject $amount;
+    public ?NumberFilterObject $amount = null;
 
-    public ?BooleanFilterObject $in_stock;
+    public ?BooleanFilterObject $in_stock = null;
 
-    public ?DateFilterObject $created_at;
+    public ?DateFilterObject $created_at = null;
+
+    /** @var \JPNut\EloquentNestedFilter\Tests\Filters\CategoryFilter[]|null */
+    public ?array $category;
+
+    public ?InvalidFilterObject $invalid_property;
+
+    /** @var iterable<\JPNut\EloquentNestedFilter\IDFilterObject>|null */
+    public $iterable_property;
+
+    /** @var self|null */
+    public $self_property;
+
+    public $ignored_property;
 }

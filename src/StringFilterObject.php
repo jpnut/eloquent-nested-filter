@@ -65,7 +65,7 @@ class StringFilterObject extends AbstractFilterObject
         }
 
         if ($this->operator->equals(Operator::NOT_LIKE())) {
-            return $query->where($name, 'LIKE', $this->value);
+            return $query->where($name, 'NOT LIKE', $this->value);
         }
 
         if ($this->operator->equals(Operator::NULL())) {

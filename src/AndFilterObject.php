@@ -24,7 +24,7 @@ class AndFilterObject implements Filterable
         return $query->where(fn (Builder $sub_query) => $this->combineFilters($sub_query));
     }
 
-    private function combineFilters(Builder $query): Builder
+    protected function combineFilters(Builder $query): Builder
     {
         foreach ($this->data as $filter) {
             $query->where(fn (Builder $sub_query) => $filter->filter($sub_query));

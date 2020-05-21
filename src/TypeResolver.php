@@ -9,11 +9,11 @@ use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 
 class TypeResolver
 {
-    private static ?DocBlockFactory $docBlockReader;
+    protected static ?DocBlockFactory $docBlockReader;
 
-    private ReflectionProperty $property;
+    protected ReflectionProperty $property;
 
-    private ReflectionClass $class;
+    protected ReflectionClass $class;
 
     /** @var string[] */
     public array $allowedTypes;
@@ -50,7 +50,7 @@ class TypeResolver
         return new static((string) $tag->getType(), $property, $class);
     }
 
-    private static function docBlockReader(): DocBlockFactory
+    protected static function docBlockReader(): DocBlockFactory
     {
         return static::$docBlockReader ??= DocBlockFactory::createInstance();
     }
@@ -88,8 +88,12 @@ class TypeResolver
         ));
     }
 
-    private function normaliseType(?string $type): ?string
+    protected function normaliseType(?string $type): ?string
     {
+        if (is_null($type) || $type === 'null') {
+            return null;
+        }
+
         if ($type === 'self') {
             return $this->property->getDeclaringClass()->getName();
         }
@@ -101,17 +105,15 @@ class TypeResolver
         return $type;
     }
 
-    private function normaliseTypes(?string ...$types): array
+    protected function normaliseTypes(?string ...$types): array
     {
-        return array_filter(
-            array_map(
-                /**
-                 * @param  string|null $type
-                 * @return string|null
-                 */
-                fn (?string $type) => $this->normaliseType($type),
-                $types
-            )
-        );
+        return array_filter(array_map(
+            /**
+             * @param  string|null $type
+             * @return string|null
+             */
+            fn (?string $type) => $this->normaliseType($type),
+            $types
+        ));
     }
 }
