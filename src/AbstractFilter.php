@@ -12,18 +12,28 @@ use JPNut\EloquentNestedFilter\Contracts\Filterable;
 
 class AbstractFilter
 {
-    /**
-     * @var static[]|null
-     */
+    /** @var static[]|null */
     public ?array $and = null;
 
-    /**
-     * @var static[]|null
-     */
+    /** @var static[]|null */
     public ?array $or = null;
 
-    public function __construct(array $parameters = [])
+    protected ?AbstractFilter $parent;
+
+    protected ?int $max_depth = 10;
+
+    protected int $depth = 0;
+
+    protected ?int $max_filters = 100;
+
+    protected int $filters = 0;
+
+    public function __construct(array $parameters = [], ?AbstractFilter $parent = null)
     {
+        $this->parent = $parent;
+
+        $this->setDepth($parent);
+
         foreach ($this->filterProperties() as $reflectionProperty) {
             $field = $reflectionProperty->getName();
 
@@ -31,6 +41,31 @@ class AbstractFilter
                 ? $this->resolveFilterField($reflectionProperty, $parameters[$field])
                 : null;
         }
+    }
+
+    protected function setDepth(?AbstractFilter $parent = null): void
+    {
+        if (is_null($parent)) {
+            return;
+        }
+
+        $this->max_depth = $parent->getMaxDepth();
+
+        $this->depth = $parent->getDepth() + 1;
+
+        if (!is_null($this->max_depth) && $this->depth > $this->max_depth) {
+            throw new InvalidArgumentException("Max filter depth exceeded.");
+        }
+    }
+
+    public function getMaxDepth(): ?int
+    {
+        return $this->max_depth;
+    }
+
+    public function getDepth(): int
+    {
+        return $this->depth;
     }
 
     /**
@@ -123,6 +158,10 @@ class AbstractFilter
         $type = $this->resolvePropertyType($property);
 
         if ($this->propertyIsArrayType($property)) {
+            if (!is_array($value)) {
+                throw new InvalidArgumentException("Expected value to be array, ".gettype($value)." received");
+            }
+
             return array_map(
                 /**
                  * @param  mixed $props
@@ -170,6 +209,8 @@ class AbstractFilter
      */
     protected function resolveFilterClass(string $class, $value, string $name)
     {
+        $this->incrementFilters();
+
         /**
          * If the passed value is already an instance of the class, return that instance.
          */
@@ -184,7 +225,7 @@ class AbstractFilter
         }
 
         if (is_subclass_of($class, AbstractFilter::class)) {
-            return new $class($value);
+            return new $class($value, $this);
         }
 
         if (is_subclass_of($class, AbstractFilterObject::class)) {
@@ -209,5 +250,22 @@ class AbstractFilter
     protected function reflectionClass(): ReflectionClass
     {
         return new ReflectionClass(static::class);
+    }
+
+    public function incrementFilters(): void
+    {
+        if (!is_null($this->parent)) {
+            $this->parent->incrementFilters();
+
+            return;
+        }
+
+        $this->filters++;
+
+        if (!is_null($this->max_filters) && $this->filters > $this->max_filters) {
+            throw new InvalidArgumentException(
+                "Maximum allowed filter amount ({$this->max_filters}) exceeded."
+            );
+        }
     }
 }
