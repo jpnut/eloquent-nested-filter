@@ -53,8 +53,8 @@ class AbstractFilter
 
         $this->depth = $parent->getDepth() + 1;
 
-        if (!is_null($this->max_depth) && $this->depth > $this->max_depth) {
-            throw new InvalidArgumentException("Max filter depth exceeded.");
+        if (! is_null($this->max_depth) && $this->depth > $this->max_depth) {
+            throw new InvalidArgumentException('Max filter depth exceeded.');
         }
     }
 
@@ -158,8 +158,8 @@ class AbstractFilter
         $type = $this->resolvePropertyType($property);
 
         if ($this->propertyIsArrayType($property)) {
-            if (!is_array($value)) {
-                throw new InvalidArgumentException("Expected value to be array, ".gettype($value)." received");
+            if (! is_array($value)) {
+                throw new InvalidArgumentException('Expected value to be array, '.gettype($value).' received');
             }
 
             return array_map(
@@ -254,7 +254,7 @@ class AbstractFilter
 
     public function incrementFilters(): void
     {
-        if (!is_null($this->parent)) {
+        if (! is_null($this->parent)) {
             $this->parent->incrementFilters();
 
             return;
@@ -262,7 +262,7 @@ class AbstractFilter
 
         $this->filters++;
 
-        if (!is_null($this->max_filters) && $this->filters > $this->max_filters) {
+        if (! is_null($this->max_filters) && $this->filters > $this->max_filters) {
             throw new InvalidArgumentException(
                 "Maximum allowed filter amount ({$this->max_filters}) exceeded."
             );
