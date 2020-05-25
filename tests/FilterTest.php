@@ -174,7 +174,7 @@ class FilterTest extends TestCase
     /** @test */
     public function it_throws_exception_if_non_array_value_passed_to_array_filter()
     {
-        $this->expectExceptionMessage("Expected value to be array, boolean received");
+        $this->expectExceptionMessage('Expected value to be array, boolean received');
 
         new ProductFilter([
             'and' => true,
@@ -189,7 +189,7 @@ class FilterTest extends TestCase
      */
     public function it_throws_if_exceeds_max_filter_depth(array $filter)
     {
-        $this->expectExceptionMessage("Max filter depth exceeded.");
+        $this->expectExceptionMessage('Max filter depth exceeded.');
 
         $class = new class extends ProductFilter {
             protected ?int $max_depth = 0;
@@ -206,7 +206,7 @@ class FilterTest extends TestCase
      */
     public function it_throws_if_exceeds_max_filter_amount(array $filter)
     {
-        $this->expectExceptionMessage("Maximum allowed filter amount (1) exceeded.");
+        $this->expectExceptionMessage('Maximum allowed filter amount (1) exceeded.');
 
         $class = new class extends ProductFilter {
             protected ?int $max_filters = 1;
@@ -259,7 +259,7 @@ class FilterTest extends TestCase
                         ],
                     ],
                 ],
-            ]
+            ],
         ];
     }
 }
