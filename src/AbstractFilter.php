@@ -9,6 +9,7 @@ use ReflectionProperty;
 use InvalidArgumentException;
 use Illuminate\Database\Eloquent\Builder;
 use JPNut\EloquentNestedFilter\Contracts\Filterable;
+use JPNut\EloquentNestedFilter\Contracts\FilterObject;
 
 class AbstractFilter
 {
@@ -151,7 +152,7 @@ class AbstractFilter
     /**
      * @param  \ReflectionProperty  $property
      * @param  mixed $value
-     * @return \JPNut\EloquentNestedFilter\AbstractFilterObject|\JPNut\EloquentNestedFilter\AbstractFilterObject[]
+     * @return \JPNut\EloquentNestedFilter\Contracts\FilterObject|\JPNut\EloquentNestedFilter\Contracts\FilterObject[]
      */
     protected function resolveFilterField(ReflectionProperty $property, $value)
     {
@@ -228,7 +229,7 @@ class AbstractFilter
             return new $class($value, $this);
         }
 
-        if (is_subclass_of($class, AbstractFilterObject::class)) {
+        if (is_subclass_of($class, FilterObject::class)) {
             return $class::fromArray($value);
         }
 

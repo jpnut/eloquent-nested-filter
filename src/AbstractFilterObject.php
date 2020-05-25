@@ -6,9 +6,9 @@ namespace JPNut\EloquentNestedFilter;
 
 use InvalidArgumentException;
 use Illuminate\Database\Eloquent\Builder;
-use JPNut\EloquentNestedFilter\Contracts\Filterable;
+use JPNut\EloquentNestedFilter\Contracts\FilterObject;
 
-abstract class AbstractFilterObject implements Filterable
+abstract class AbstractFilterObject implements FilterObject
 {
     abstract public function filter(string $name, Builder $query): Builder;
 

@@ -145,7 +145,7 @@ $results = $filter->query(Product::query()->withTrashed())->get();
 
 ### Custom Filter Objects
 
-You may wish to add new filter objects. To do so, simply create a new class which extends `JPNut\EloquentNestedFilter\AbstractFilterObject`. Your class _must_ define two methods:
+You may wish to add new filter objects. To do so, simply create a new class which extends `JPNut\EloquentNestedFilter\AbstractFilterObject` or implements `JPNut\EloquentNestedFilter\Contracts\FilterObject`. Your class _must_ define two methods:
 
 ```php
 abstract public function filter(string $name, Builder $query): Builder;

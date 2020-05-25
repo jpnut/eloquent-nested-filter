@@ -76,7 +76,7 @@ class FilterTest extends TestCase
         $query = $filter->filter(Product::query());
 
         $this->assertEquals(
-            'select * from `products` where ((`products`.`id` = ?) and (`name` LIKE ?) and (((`amount` >= ?) or (`amount` is null) or (`in_stock` = ?) or (`created_at` < ?))) and (exists (select * from `categories` where `products`.`category_id` = `categories`.`id` and (`name` LIKE ?))))',
+            'select * from `products` where ((`products`.`id` = ?) and (LOWER(name) LIKE ?) and (((`amount` >= ?) or (`amount` is null) or (`in_stock` = ?) or (`created_at` < ?))) and (exists (select * from `categories` where `products`.`category_id` = `categories`.`id` and (LOWER(name) LIKE ?))))',
             $query->toSql()
         );
 
@@ -126,7 +126,7 @@ class FilterTest extends TestCase
         $query = $filter->filter(Product::query());
 
         $this->assertEquals(
-            'select * from `products` where ((`products`.`id` = ?) and (`name` LIKE ?) and (((`amount` >= ?) or (`amount` is null) or (`in_stock` = ?) or (`created_at` < ?))) and (exists (select * from `categories` where `products`.`category_id` = `categories`.`id` and (`name` LIKE ?))))',
+            'select * from `products` where ((`products`.`id` = ?) and (LOWER(name) LIKE ?) and (((`amount` >= ?) or (`amount` is null) or (`in_stock` = ?) or (`created_at` < ?))) and (exists (select * from `categories` where `products`.`category_id` = `categories`.`id` and (LOWER(name) LIKE ?))))',
             $query->toSql()
         );
 
