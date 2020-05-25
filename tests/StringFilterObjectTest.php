@@ -31,112 +31,112 @@ class StringFilterObjectTest extends TestCase
             [
                 ['value' => 'Foo', 'operator' => Operator::IS(), 'case_sensitive' => false],
                 'select * from `products` where LOWER(name) = ?',
-                ['foo']
+                ['foo'],
             ],
             [
                 ['value' => 'Foo', 'operator' => Operator::IS(), 'case_sensitive' => true],
                 'select * from `products` where `name` = ?',
-                ['Foo']
+                ['Foo'],
             ],
             [
                 ['value' => 'Foo', 'operator' => Operator::IS_NOT(), 'case_sensitive' => false],
                 'select * from `products` where LOWER(name) <> ?',
-                ['foo']
+                ['foo'],
             ],
             [
                 ['value' => 'Foo', 'operator' => Operator::IS_NOT(), 'case_sensitive' => true],
                 'select * from `products` where `name` <> ?',
-                ['Foo']
+                ['Foo'],
             ],
             [
                 ['value' => 'Foo', 'operator' => Operator::CONTAINS(), 'case_sensitive' => false],
                 'select * from `products` where LOWER(name) LIKE ?',
-                ['%foo%']
+                ['%foo%'],
             ],
             [
                 ['value' => 'Foo', 'operator' => Operator::CONTAINS(), 'case_sensitive' => true],
                 'select * from `products` where `name` LIKE ?',
-                ['%Foo%']
+                ['%Foo%'],
             ],
             [
                 ['value' => 'Foo', 'operator' => Operator::DOES_NOT_CONTAIN(), 'case_sensitive' => false],
                 'select * from `products` where LOWER(name) NOT LIKE ?',
-                ['%foo%']
+                ['%foo%'],
             ],
             [
                 ['value' => 'Foo', 'operator' => Operator::DOES_NOT_CONTAIN(), 'case_sensitive' => true],
                 'select * from `products` where `name` NOT LIKE ?',
-                ['%Foo%']
+                ['%Foo%'],
             ],
             [
                 ['value' => 'Foo', 'operator' => Operator::BEGINS(), 'case_sensitive' => false],
                 'select * from `products` where LOWER(name) LIKE ?',
-                ['foo%']
+                ['foo%'],
             ],
             [
                 ['value' => 'Foo', 'operator' => Operator::BEGINS(), 'case_sensitive' => true],
                 'select * from `products` where `name` LIKE ?',
-                ['Foo%']
+                ['Foo%'],
             ],
             [
                 ['value' => 'Foo', 'operator' => Operator::DOES_NOT_BEGIN(), 'case_sensitive' => false],
                 'select * from `products` where LOWER(name) NOT LIKE ?',
-                ['foo%']
+                ['foo%'],
             ],
             [
                 ['value' => 'Foo', 'operator' => Operator::DOES_NOT_BEGIN(), 'case_sensitive' => true],
                 'select * from `products` where `name` NOT LIKE ?',
-                ['Foo%']
+                ['Foo%'],
             ],
             [
                 ['value' => 'Foo', 'operator' => Operator::ENDS(), 'case_sensitive' => false],
                 'select * from `products` where LOWER(name) LIKE ?',
-                ['%foo']
+                ['%foo'],
             ],
             [
                 ['value' => 'Foo', 'operator' => Operator::ENDS(), 'case_sensitive' => true],
                 'select * from `products` where `name` LIKE ?',
-                ['%Foo']
+                ['%Foo'],
             ],
             [
                 ['value' => 'Foo', 'operator' => Operator::DOES_NOT_END(), 'case_sensitive' => false],
                 'select * from `products` where LOWER(name) NOT LIKE ?',
-                ['%foo']
+                ['%foo'],
             ],
             [
                 ['value' => 'Foo', 'operator' => Operator::DOES_NOT_END(), 'case_sensitive' => true],
                 'select * from `products` where `name` NOT LIKE ?',
-                ['%Foo']
+                ['%Foo'],
             ],
             [
                 ['value' => 'Foo', 'operator' => Operator::LIKE(), 'case_sensitive' => false],
                 'select * from `products` where LOWER(name) LIKE ?',
-                ['foo']
+                ['foo'],
             ],
             [
                 ['value' => 'Foo', 'operator' => Operator::LIKE(), 'case_sensitive' => true],
                 'select * from `products` where `name` LIKE ?',
-                ['Foo']
+                ['Foo'],
             ],
             [
                 ['value' => 'Foo', 'operator' => Operator::NOT_LIKE(), 'case_sensitive' => false],
                 'select * from `products` where LOWER(name) NOT LIKE ?',
-                ['foo']
+                ['foo'],
             ],
             [
                 ['value' => 'Foo', 'operator' => Operator::NOT_LIKE(), 'case_sensitive' => true],
                 'select * from `products` where `name` NOT LIKE ?',
-                ['Foo']
+                ['Foo'],
             ],
             [
                 ['value' => null, 'operator' => Operator::NULL()],
                 'select * from `products` where `name` is null',
-                []
+                [],
             ],
             [
                 ['value' => null, 'operator' => Operator::NOT_NULL()],
                 'select * from `products` where `name` is not null',
-                []
+                [],
             ],
         ];
     }
