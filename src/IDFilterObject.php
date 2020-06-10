@@ -25,6 +25,10 @@ class IDFilterObject extends AbstractFilterObject
 
     public function filter(string $name, Builder $query): Builder
     {
+        if (!$this->value) {
+            return $query;
+        }
+
         if ($this->operator->equals(Operator::IS())) {
             return $query->whereKey($this->value);
         }
