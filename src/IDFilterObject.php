@@ -25,7 +25,7 @@ class IDFilterObject extends AbstractFilterObject
 
     public function filter(string $name, Builder $query): Builder
     {
-        if (!$this->value) {
+        if (! $this->value) {
             return $query;
         }
 
