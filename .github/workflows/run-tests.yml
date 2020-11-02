@@ -33,6 +33,7 @@ jobs:
                   php-version: ${{ matrix.php }}
                   extensions: json
                   coverage: none
+                  tools: psalm
 
             - name: Install dependencies
               run: composer install --prefer-dist
@@ -41,4 +42,4 @@ jobs:
               run: vendor/bin/phpunit
 
             - name: Static Analysis
-              uses: docker://vimeo/psalm-github-actions
+              run: psalm --output-format=github
