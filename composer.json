@@ -3,14 +3,14 @@
     "description": "A nested filter structure for Eloquent Models",
     "type": "library",
     "require": {
-        "illuminate/database": "^7.0",
+        "illuminate/database": "^8.0",
         "myclabs/php-enum": "^1.7",
-        "php": "^7.4",
+        "php": "^7.4|^8.0",
         "phpdocumentor/reflection-docblock": "^5.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.1",
-        "orchestra/testbench": "^5.2",
+        "orchestra/testbench": "^6.0",
         "vimeo/psalm": "^3.11",
         "ext-json": "*"
     },
